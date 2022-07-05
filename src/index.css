@@ -1,6 +1,6 @@
 :root {
-    --primary: #8b38ffd5;
-    --secondary: #383bffd5;
+    --lightprimary: #FFB352;
+    --darkprimary: #8b38ffd5;
     --dark: #000;
     --light: #eee;
 }
@@ -17,29 +17,115 @@ body {
 }
 
 .App {
-  display: flex;
-  min-height: 550px;
-  align-items: center;
-  justify-content: center;  
-  padding: 16px;
+    display: flex;
+    min-height: 550px;
+    align-items: center;
+    justify-content: center;  
+    padding: 16px;
 }
 
 .fullCalculator {
     width: 100%;
     max-width: 400px;
-    background-color: #fff;
+    /*background-color: #fff;*/
     border-radius: 16px;
     overflow: hidden;
     box-shadow: 0px 2px 64px #000;
 }
 
+.LightApp .fullCalculator {
+    background-color: #fff;
+}
+
+.DarkApp .fullCalculator {
+    background-color: #222;
+}
+
+.bulbIcon {
+    margin-left: 4px;
+    margin-top: 3px;
+    margin-bottom: -2px;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 35px;
+    height: 20PX;
+    margin-left: 4px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgb(170, 170, 170);
+    -webkit-transition: smooth .4s;
+    transition: smooth .4s;
+  }
+
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 14px;
+    width: 14px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition:  .4s;
+  }
+
+  input:checked + .slider {
+    background-color: #313131;
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px #000000;
+  }
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(15px);
+    -ms-transform: translateX(15px);
+    transform: translateX(15px);
+  }
+  
+  .slider.round {
+    border-radius: 30px;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  }
+
 .display {
     padding: 16px;
     text-align: right;
-    background-color: var(--dark);
-    color: var(--light);
+    /*background-color: var(--dark);
+    color: var(--light);*/
     font-size: 24px;
     font-weight: 30;
+}
+
+.LightApp .display {
+    background-color: var(--light);
+    color: var(--dark);
+}
+
+.DarkApp .display {
+    background-color: var(--dark);
+    color: var(--light);
 }
 
 .display span {
@@ -51,11 +137,19 @@ button {
     appearance: none;
     border: none;
     outline: none;
-    color: #fff;
+    /*color: #fff;*/
     font-size: 20px;
     padding: 16px;
     cursor: pointer;
     transition: 0.4s;
+}
+
+.LightApp button {
+    color: #222;
+}
+
+.DarkApp button {
+    color: #fff;
 }
 
 button:hover {
@@ -68,8 +162,15 @@ button:hover {
 
 .keyboardOperators button {
     flex: 1 1 0%;
-    background-color: var(--primary);
     font-weight: 700;
+}
+
+.LightApp .keyboardOperators button {
+    background-color: var(--lightprimary);
+}
+
+.DarkApp .keyboardOperators button {
+    background-color: var(--darkprimary);
 }
 
 .keyboardValues {
@@ -80,5 +181,13 @@ button:hover {
 .keyboardValues button {
     flex: 1 1 33.333%;
     max-width: 33.4%;
+}
+
+.LightApp .keyboardValues button {
+    background-color: var(--light);
+}
+
+.DarkApp .keyboardValues button {
     background-color: var(--dark);
 }
+
